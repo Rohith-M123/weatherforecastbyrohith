@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather Forecast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4ede4;
+            background-image: url("sky.avif");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .rectangle {
+            height: 320px;
+            width: 300px;
+            background-color: #ffffff;
+            border: 1px solid #333;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: normal;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        header h3 {
+            font-size: 18px;
+            font-weight: normal;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+            color: #222;
+        }
+
+        input {
+            font-size: 14px;
+            width: 100%;
+            padding: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #999;
+            border-radius: 4px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .button {
+            font-size: 14px;
+            padding: 6px 10px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            width: 48%;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background-color: #000;
+        }
+
+        footer {
+            margin-top: 10px;
+            font-size: 10px;
+            color: #080000;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            let name = document.getElementById("USERNAME").value;
+            let email = document.getElementById("EMAIL").value;
+            let password = document.getElementById("PASSWORD").value;
+
+            if (name.length < 15) {
+                alert("Username should be at least 15 characters long");
+                return;
+            }
+
+            if (!email.endsWith("@gmail.com")) {
+                alert("Invalid Email! Email must be a valid '@gmail.com' address.");
+                return;
+            }
+
+            let passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!passwordPattern.test(password)) {
+                alert("Password must be at least 8 characters long and include at least 1 uppercase letter, 1 number, and 1 special character.");
+                return;
+            }
+
+            alert("Login successfully...");
+            window.location.href = "index.html";
+        }
+
+        window.onload = function () {
+            let buttons = document.querySelectorAll(".button");
+
+            buttons.forEach(button => {
+                button.addEventListener("click", function (event) {
+                    if (button.innerText === "Login") {
+                        validateForm(event);
+                    } else if (button.innerText === "Sign Up") {
+                        window.location.href = "signup.html";
+                    }
+                });
+            });
+        };
+    </script>
+</head>
+<body>
+    <h1>Weather Forecast Login</h1>
+    <form>
+        <div class="rectangle">
+            <header><h3>Login Form</h3></header>
+            <div>
+                <label for="USERNAME">Username</label>
+                <input type="text" id="USERNAME" name="USERNAME" required>
+            </div>
+            <div>
+                <label for="EMAIL">Email</label>
+                <input type="email" id="EMAIL" name="EMAIL" required>
+            </div>
+            <div>
+                <label for="PASSWORD">Password</label>
+                <input type="password" id="PASSWORD" name="PASSWORD" required>
+            </div>
+            <div class="button-container">
+                <button type="button" class="button">Login</button>
+                <button type="button" class="button">Sign Up</button>
+            </div>
+            
+        </div>
+    </form>
+    <footer class="footer">
+        <p>Developed and Designed by Rohith</p>
+      </footer>
+      
+</body>
+</html>
